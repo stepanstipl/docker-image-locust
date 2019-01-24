@@ -23,7 +23,7 @@ RUN apk add --update --no-cache \
     && pip3 install locustio=="${LOCUST_VERSION}" \
     && mkdir -p "${LOCUST_HOME}" \
     && addgroup -g "${LOCUST_GID}" "${LOCUST_GROUP}" \
-    && adduser -g "Kafka user" -D -h "${LOCUST_HOME}" -G "${LOCUST_GROUP}" -s /sbin/nologin -u "${LOCUST_UID}" "${LOCUST_USER}" \
+    && adduser -g "Locust user" -D -h "${LOCUST_HOME}" -G "${LOCUST_GROUP}" -s /sbin/nologin -u "${LOCUST_UID}" "${LOCUST_USER}" \
     && chown -R "${LOCUST_USER}:${LOCUST_GROUP}" "${LOCUST_HOME}" \
     && apk del build-dependencies \
     && wget "${LE_STAGING_URL}" -O "${LE_STAGING_FILE}" \
