@@ -1,8 +1,10 @@
 # docker-image-locust
 
-This images is based on Alpine and designed to be compatible with the Locust
-chart we use. It also adds certificates for Let's Encrypt Staging, as we use
-these for our dev environments.
+This image is based on Alpine and designed to be compatible with the official
+Helm chart (https://github.com/helm/charts/tree/master/stable/locust).
+
+It also adds Root certificate for Let's Encrypt Staging environment, as this
+environment is used for GPII dev environments' certificates.
 
 ## Building
 
