@@ -9,7 +9,8 @@ ENV LOCUST_VERSION=0.9.0 \
     LANG=C.UTF-8 \
     LE_STAGING_URL=https://letsencrypt.org/certs/fakelerootx1.pem \
     LE_STAGING_SHA=12ee1647b9e344a110771b98ebce1f245dda0cd1 \
-    LE_STAGING_FILE=/usr/local/share/ca-certificates/fakelerootx1.pem
+    LE_STAGING_FILE=/usr/local/share/ca-certificates/fakelerootx1.pem \
+    REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 
 RUN apk add --update --no-cache \
       ca-certificates \
@@ -27,7 +28,8 @@ RUN apk add --update --no-cache \
     && chown -R "${LOCUST_USER}:${LOCUST_GROUP}" "${LOCUST_HOME}" \
     && apk del build-dependencies \
     && wget "${LE_STAGING_URL}" -O "${LE_STAGING_FILE}" \
-    && echo "${LE_STAGING_SHA}  ${LE_STAGING_FILE}" |  sha1sum -c -
+    && echo "${LE_STAGING_SHA}  ${LE_STAGING_FILE}" |  sha1sum -c - \
+    && update-ca-certificates
 
 COPY entrypoint.sh /entrypoint.sh
 COPY locust-tasks /locust-tasks
