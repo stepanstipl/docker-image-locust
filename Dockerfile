@@ -14,6 +14,7 @@ ENV LOCUST_VERSION=0.9.0 \
 
 RUN apk add --update --no-cache \
       ca-certificates \
+      curl \
       openssl \
       py3-zmq \
       python3 \
